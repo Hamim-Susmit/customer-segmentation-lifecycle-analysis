@@ -10,16 +10,10 @@ This project builds a reusable analytics pipeline for **customer segmentation** 
 The workflow cleans transaction data, engineers customer-level features, applies rule-based **RFM segmentation**, discovers **K-Means clusters**, and performs **cohort retention & revenue analysis**.
 
 ## Dataset
-**Online Retail II** contains transactional data for a UK-based online retailer. The pipeline expects one of:
+**Online Retail II** contains transactional data for a UK-based online retailer. The pipeline expects:
 
 ```
 data/raw/online_retail_ii.csv
-```
-
-or
-
-```
-data/raw/online_retail_ii.xlsx
 ```
 
 If the file is missing, the pipeline stops with a friendly error prompting you to place it there.

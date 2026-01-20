@@ -3,8 +3,7 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = PROJECT_ROOT / "data"
-RAW_DATA_CSV = DATA_DIR / "raw" / "online_retail_ii.csv"
-RAW_DATA_XLSX = DATA_DIR / "raw" / "online_retail_ii.xlsx"
+RAW_DATA_PATH = DATA_DIR / "raw" / "online_retail_ii.csv"
 PROCESSED_DIR = DATA_DIR / "processed"
 REPORTS_DIR = PROJECT_ROOT / "reports"
 FIGURES_DIR = REPORTS_DIR / "figures"
