@@ -16,7 +16,13 @@ The workflow cleans transaction data, engineers customer-level features, applies
 data/raw/online_retail_ii.csv
 ```
 
-If the file is missing, the pipeline stops with a friendly error prompting you to place it there.
+If you have the original XLSX file, you can convert it first:
+
+```bash
+python scripts/convert_xlsx_to_csv.py --input data/raw/online_retail_II.xlsx --output data/raw/online_retail_ii.csv
+```
+
+If the CSV file is missing, the pipeline stops with a friendly error prompting you to place it there.
 
 ## Methods
 ### 1) Data Cleaning
