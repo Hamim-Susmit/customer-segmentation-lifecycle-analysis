@@ -14,14 +14,7 @@ def load_raw_transactions(path: Path | None = None) -> pd.DataFrame:
         return pd.read_csv(raw_path)
 
     if path is None and config.RAW_XLSX_PATH.exists():
-        try:
-            return pd.read_excel(config.RAW_XLSX_PATH)
-        except ImportError as exc:
-            raise ImportError(
-                "Reading 'online_retail_II.xlsx' requires the optional dependency "
-                "'openpyxl'. Install it (pip install openpyxl) or convert the file "
-                "to CSV with scripts/convert_xlsx_to_csv.py."
-            ) from exc
+        return pd.read_excel(config.RAW_XLSX_PATH)
 
     missing_hint = (
         f"Raw data not found at {raw_path}. "
