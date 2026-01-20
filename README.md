@@ -16,7 +16,7 @@ The workflow cleans transaction data, engineers customer-level features, applies
 data/raw/online_retail_ii.csv
 ```
 
-If you have the original XLSX file, the pipeline can read it directly, or you can convert it first:
+If you have the original XLSX file, you can convert it first:
 
 ```bash
 python scripts/convert_xlsx_to_csv.py --input data/raw/online_retail_II.xlsx --output data/raw/online_retail_ii.csv
