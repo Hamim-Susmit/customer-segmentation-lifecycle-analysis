@@ -14,7 +14,13 @@ def load_raw_transactions(path: Path | None = None) -> pd.DataFrame:
         return pd.read_csv(raw_path)
 
     if path is None and config.RAW_XLSX_PATH.exists():
-        return pd.read_excel(config.RAW_XLSX_PATH)
+        df = pd.read_excel(config.RAW_XLSX_PATH)
+        # Standardize column names from Excel file
+        df = df.rename(columns={
+            "Price": "UnitPrice",
+            "Customer ID": "CustomerID"
+        })
+        return df
 
     missing_hint = (
         f"Raw data not found at {raw_path}. "
