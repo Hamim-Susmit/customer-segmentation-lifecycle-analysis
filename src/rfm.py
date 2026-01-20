@@ -17,12 +17,16 @@ SEGMENT_MAP = {
 
 
 def score_rfm(customer_df: pd.DataFrame, n_tiles: int = 5) -> pd.DataFrame:
-    """Score customers using quantile-based RFM scoring."""
+    """Score customers using quantile-based RFM scoring.
+    
+    Uses duplicates='drop' to handle low-variance data where many customers
+    share the same values (common in small datasets).
+    """
     df = customer_df.copy()
     df["R"] = pd.qcut(df["recency_days"], n_tiles, labels=False, duplicates="drop")
     df["R"] = df["R"].max() - df["R"] + 1
-    df["F"] = pd.qcut(df["frequency"].rank(method="first"), n_tiles, labels=False) + 1
-    df["M"] = pd.qcut(df["monetary"].rank(method="first"), n_tiles, labels=False) + 1
+    df["F"] = pd.qcut(df["frequency"].rank(method="first"), n_tiles, labels=False, duplicates="drop") + 1
+    df["M"] = pd.qcut(df["monetary"].rank(method="first"), n_tiles, labels=False, duplicates="drop") + 1
     df["RFM_SCORE"] = df[["R", "F", "M"]].astype(int).astype(str).agg("".join, axis=1)
     return df
 

@@ -11,9 +11,10 @@ def clean_transactions(df: pd.DataFrame) -> pd.DataFrame:
     Steps:
     - Parse InvoiceDate to datetime
     - Create Revenue column
-    - Remove zero/negative UnitPrice and zero Quantity
-    - Flag cancellations/returns
-    - Drop missing CustomerID for modeling
+    - Remove zero/negative UnitPrice (keep only UnitPrice > 0)
+    - Remove zero Quantity (keep only Quantity != 0; negative quantities retained)
+    - Flag cancellations/returns (invoices starting with 'C' or Quantity < 0)
+    - Note: Missing CustomerID rows are dropped later in run_all.py
     """
     df_clean = df.copy()
     df_clean["InvoiceDate"] = pd.to_datetime(df_clean["InvoiceDate"], errors="coerce")

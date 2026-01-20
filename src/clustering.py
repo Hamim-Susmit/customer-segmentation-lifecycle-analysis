@@ -45,7 +45,11 @@ def run_kmeans(
         model = KMeans(n_clusters=k, random_state=42, n_init=10)
         labels = model.fit_predict(scaled)
         inertia[k] = model.inertia_
-        silhouette[k] = silhouette_score(scaled, labels)
+        try:
+            silhouette[k] = silhouette_score(scaled, labels)
+        except ValueError:
+            # Silhouette score fails if dataset is too small (n_samples < k)
+            silhouette[k] = np.nan
         models[k] = model
 
     best_k = max(silhouette, key=silhouette.get)
